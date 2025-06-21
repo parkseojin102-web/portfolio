@@ -109,10 +109,20 @@ document.addEventListener("pointermove", (e) => {
 document.addEventListener("pointerup", () => {
     isDragging = false;
 });
+let isVisible = true;
+
+const observerT = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        isVisible = entry.isIntersecting;
+    });
+}, { threshold: 0.1 });
+
+observerT.observe(document.querySelector('.circle'));
 
 // 자동 회전 (사용자 조작 없을 때)
 function animate() {
     requestAnimationFrame(animate);
+    if (!isVisible) return;
     if (!isDragging) {
         group.rotation.y += 0.003;
     }

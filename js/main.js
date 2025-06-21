@@ -1,4 +1,19 @@
 $(function () {
+    // 스크롤 시 영상 멈춤/재생
+    const video = document.getElementById("bg_video");
+
+    const observerV = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observerV.observe(video);
+
     gsap.registerPlugin(ScrollTrigger);
 
     const path = document.querySelector('.path_d');
