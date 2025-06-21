@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     gsap.registerPlugin(ScrollTrigger);
 
     const path = document.querySelector('.path_d');
@@ -76,7 +76,7 @@ $(function() {
     updatePosition();
 
 
-    $('ul.nav-tabs li').click(function() {
+    $('ul.nav-tabs li').click(function () {
         $('ul.nav-tabs li').removeClass('active')
         $(this).addClass('active');
         let i = $(this).index();
@@ -102,6 +102,7 @@ $(function() {
             contents.forEach(c => c.classList.remove('active'));
             tab.classList.add('active');
             contents[index].classList.add('active');
+            swiper.update();
 
             // 배경 처리
             if (tab.classList.contains('home')) {
@@ -126,7 +127,7 @@ $(function() {
 
     /* projects */
 
-    $(".left_box .onclick li").click(function() {
+    $(".left_box .onclick li").click(function () {
         // 왼쪽 탭에서 on 클래스 이동
         $(".left_box .onclick li").removeClass("on");
         $(this).addClass("on");
@@ -139,7 +140,7 @@ $(function() {
         $(".right_box .box." + className).addClass("on");
     });
 
-    let swiper = new Swiper(".web_cards", {
+    var swiper = new Swiper(".web_cards", {
         effect: "coverflow",
         grabCursor: true,
         loop: true,
@@ -153,8 +154,10 @@ $(function() {
             slideShadows: false,
         },
     });
-        let swipers = new Swiper(".main_cards", {
+    var swiper = new Swiper(".main_cards", {
         effect: "coverflow",
+        observer: true,
+        observeParents: true,
         grabCursor: true,
         loop: true,
         speed: 600,
@@ -166,5 +169,5 @@ $(function() {
             modifier: 1,
             slideShadows: false,
         },
-         });
+    });
 });
