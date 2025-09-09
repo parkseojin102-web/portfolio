@@ -1042,3 +1042,12 @@ canvas {
     justify-content: center;
     align-items: center;
 }
+/* 투명도 페이드인 효과 */
+.fade-in {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+}
